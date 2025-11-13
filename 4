@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    const string s1 = "Hello";
+    string s2 = "World";
+
+    cout << "s1 is ";
+    if (&s1) cout << "immutable" << endl;
+
+    cout << "s2 is ";
+    if (&s2) cout << "mutable" << endl;
+
+    return 0;
+}
