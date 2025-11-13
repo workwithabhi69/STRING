@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+bool searchFrom(int i, int j, vector<vector<char>>& grid, string word, int dx, int dy) {
+    int n = grid.size(), m = grid[0].size();
+    for (int k = 0; k < word.size(); k++) {
+        int x = i + k * dx, y = j + k * dy;
+        if (x < 0 || x >= n || y < 0 || y >= m || grid[x][y] != word[k])
+            return false;
+    }
+    return true;
+}
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    vector<vector<char>> grid(n, vector<char>(m));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            cin >> grid[i][j];
+
+    string word;
+    cin >> word;
+
+    int dirs[8][2] = {{0,1},{0,-1},{1,0},{-1,0},{1,1},{1,-1},{-1,1},{-1,-1}};
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            for (auto dir : dirs) {
+                if (searchFrom(i, j, grid, word, dir[0], dir[1]))
+                    cout << "Word found at (" << i << "," << j << ")" << endl;
+            }
+        }
+    }
+    return 0;
+}
