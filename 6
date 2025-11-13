@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool isValidShuffle(string s1, string s2, string s) {
+    int i = 0, j = 0, k = 0;
+    if (s.length() != s1.length() + s2.length())
+        return false;
+
+    while (k < s.length()) {
+        if (i < s1.length() && s[k] == s1[i])
+            i++;
+        else if (j < s2.length() && s[k] == s2[j])
+            j++;
+        else
+            return false;
+        k++;
+    }
+    return true;
+}
+
+int main() {
+    string s1, s2, s;
+    cin >> s1 >> s2 >> s;
+    if (isValidShuffle(s1, s2, s))
+        cout << "Valid Shuffle";
+    else
+        cout << "Not a Valid Shuffle";
+    return 0;
+}
